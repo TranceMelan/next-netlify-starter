@@ -37,7 +37,7 @@ if [ -n "$ADDITIONAL_PORTS" ] && ! [[ "$ADDITIONAL_PORTS" =~ ^[0-9]+( [0-9]+)*$ 
     exit 1
 fi
 echo -e "${CHECK_DONE}"
-qemu_cmd="qemu-system-x86_64 -drive file=${n,,}.qcow2,format=qcow2 -virtfs local,path=shared,mount_tag=shared,security_model=none -m ${SERVER_MEMORY} -net nic,model=virtio"
+qemu_cmd="qemu-system-x86_64 -usbdevice tablet -drive file=${n,,}.qcow2,format=qcow2 -virtfs local,path=shared,mount_tag=shared,security_model=none -m ${SERVER_MEMORY} -net nic,model=virtio"
 if [ ! -e "${n,,}.qcow2" ]; then
     echo -e "${DOWNLOAD}"
     wget "https://api.david1117.dev/download/${n}.qcow2.gz" -O "${n}.qcow2" > /dev/null 2>&1
