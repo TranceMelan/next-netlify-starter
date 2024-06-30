@@ -2,7 +2,7 @@
 MIN_MEMORY="128"
 #CUSTOM_VARS
 #VNC
-n=ubuntu-22
+n=ubuntu-20
 b="\x1b[34m"
 y="\x1b[33m"
 g="\x1b[32m"
