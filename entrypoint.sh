@@ -52,7 +52,7 @@ if [ "$VNC" -eq 1 ]; then
     qemu_cmd+=" -vnc :$((SERVER_PORT - 5900)) -net user -usbdevice tablet"
 else
     echo -e "You're currently running Machine on RDP Mode, to switch to VNC please Switch to VNC in Settings"
-    qemu_cmd+="-vnc: 29323 -net user,hostfwd=tcp::${SERVER_PORT}-:3389"
+    qemu_cmd+="-nographic -net user,hostfwd=tcp::${SERVER_PORT}-:3389"
     IFS=' ' read -ra ports <<< "${ADDITIONAL_PORTS}"
     for port in "${ports[@]}"; do
         qemu_cmd+=",hostfwd=tcp::${port}-:${port}"
@@ -73,5 +73,7 @@ if [ "$VNC" -eq 1 ]; then
 else
     echo -e "${BOOT_DONE}"
     echo -e " ${b}●${w} Default RDP Credential username is admin and password is 123456789 Remember to Change your Password after login !"
+    echo -e " ${b}●${w} Qemu will start in 5 Second"
+    sleep 5
     eval "$qemu_cmd"
 fi
