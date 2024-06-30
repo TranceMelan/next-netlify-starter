@@ -2,7 +2,7 @@
 MIN_MEMORY="128"
 #CUSTOM_VARS
 #VNC
-n=kali-desktop
+n=window10
 b="\x1b[34m"
 y="\x1b[33m"
 g="\x1b[32m"
@@ -40,7 +40,7 @@ echo -e "${CHECK_DONE}"
 qemu_cmd="qemu-system-x86_64 -drive file=${n,,}.qcow2,format=qcow2 -virtfs local,path=shared,mount_tag=shared,security_model=none -m ${SERVER_MEMORY} -net nic,model=virtio"
 if [ ! -e "${n,,}.qcow2" ]; then
     echo -e "${DOWNLOAD}"
-    wget --user-agent="lumenvm-imagedownloader" "https://api.david1117.dev/download/${n}.qcow2.gz" -O "${n}.qcow2.gz" > /dev/null 2>&1
+    wget "https://api.david1117.dev/download/${n}.qcow2.gz" -O "${n}.qcow2" > /dev/null 2>&1
     echo -e "${DOWNLOAD_DONE}"
     echo -e "${PROVISION}"
     gzip -d "${n}.qcow2.gz" > /dev/null 2>&1
@@ -51,7 +51,8 @@ mkdir -p shared
 if [ "$VNC" -eq 1 ]; then
     qemu_cmd+=" -vnc :$((SERVER_PORT - 5900)) -net user"
 else
-    qemu_cmd+=" -nographic -net user,hostfwd=tcp::${SERVER_PORT}-:22"
+    echo -e "You're currently running Machine on RDP Mode, to switch to VNC please Switch to VNC in Settings"
+    qemu_cmd+="-net user,hostfwd=tcp::${SERVER_PORT}-:3389"
     IFS=' ' read -ra ports <<< "${ADDITIONAL_PORTS}"
     for port in "${ports[@]}"; do
         qemu_cmd+=",hostfwd=tcp::${port}-:${port}"
@@ -71,5 +72,6 @@ if [ "$VNC" -eq 1 ]; then
     eval "$qemu_cmd" > /dev/null 2>&1
 else
     echo -e "${BOOT_DONE}"
+    echo -e "${b}●${w} Default RDP Credential username is admin and password is 123456789 Remember to Change your Password after login !"
     eval "$qemu_cmd"
 fi
