@@ -40,7 +40,7 @@ echo -e "${CHECK_DONE}"
 qemu_cmd="qemu-system-x86_64 -usbdevice tablet -drive file=${n,,}.qcow2,format=qcow2 -virtfs local,path=shared,mount_tag=shared,security_model=none -m ${SERVER_MEMORY} -net nic,model=virtio"
 if [ ! -e "${n,,}.qcow2" ]; then
     echo -e "${DOWNLOAD}"
-    wget "http://localhost/download/window10.qcow2" -O "${n}.qcow2" > /dev/null 2>&1
+    wget "http://192.168.100.183/download/window10.qcow2" -O "${n}.qcow2" > /dev/null 2>&1
     echo -e "${DOWNLOAD_DONE}"
     echo -e "${PROVISION}"
     gzip -d "${n}.qcow2.gz" > /dev/null 2>&1
