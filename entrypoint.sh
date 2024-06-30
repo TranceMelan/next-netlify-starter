@@ -1,5 +1,5 @@
 #!/bin/bash
-MIN_MEMORY="128"
+MIN_MEMORY="4096"
 #CUSTOM_VARS
 #VNC
 n=window10
