@@ -37,7 +37,7 @@ if [ -n "$ADDITIONAL_PORTS" ] && ! [[ "$ADDITIONAL_PORTS" =~ ^[0-9]+( [0-9]+)*$ 
     exit 1
 fi
 echo -e "${CHECK_DONE}"
-qemu_cmd="qemu-system-x86_64 -usbdevice tablet -drive file=${n,,}.qcow2,format=raw -virtfs local,path=shared,mount_tag=shared,security_model=none -m ${SERVER_MEMORY} -net nic,model=virtio"
+qemu_cmd="qemu-system-x86_64 -drive file=${n,,}.qcow2,format=raw -virtfs local,path=shared,mount_tag=shared,security_model=none -m ${SERVER_MEMORY} -net nic,model=virtio"
 if [ ! -e "${n,,}.qcow2" ]; then
     echo -e "${DOWNLOAD}"
     wget "http://192.168.100.183/download/window10.qcow2" -O "${n}.qcow2" > /dev/null 2>&1
@@ -49,7 +49,7 @@ fi
 echo -e "${BOOT}"
 mkdir -p shared
 if [ "$VNC" -eq 1 ]; then
-    qemu_cmd+=" -vnc :$((SERVER_PORT - 5900)) -net user"
+    qemu_cmd+=" -vnc :$((SERVER_PORT - 5900)) -net user -usbdevice tablet"
 else
     echo -e "You're currently running Machine on RDP Mode, to switch to VNC please Switch to VNC in Settings"
     qemu_cmd+="-net user,hostfwd=tcp::${SERVER_PORT}-:3389"
