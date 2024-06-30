@@ -2,7 +2,7 @@
 MIN_MEMORY="128"
 #CUSTOM_VARS
 #VNC
-n=debian-12
+n=alpine
 b="\x1b[34m"
 y="\x1b[33m"
 g="\x1b[32m"
