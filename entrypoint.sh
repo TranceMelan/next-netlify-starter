@@ -52,7 +52,7 @@ if [ "$VNC" -eq 1 ]; then
     qemu_cmd+=" -vnc :$((SERVER_PORT - 5900)) -net user -usbdevice tablet"
 else
     echo -e "You're currently running Machine on RDP Mode, to switch to VNC please Switch to VNC in Settings"
-    qemu_cmd+="-nographic -net user,hostfwd=tcp::${SERVER_PORT}-:3389"
+    qemu_cmd+=" -nographic -net user,hostfwd=tcp::${SERVER_PORT}-:3389"
     IFS=' ' read -ra ports <<< "${ADDITIONAL_PORTS}"
     for port in "${ports[@]}"; do
         qemu_cmd+=",hostfwd=tcp::${port}-:${port}"
