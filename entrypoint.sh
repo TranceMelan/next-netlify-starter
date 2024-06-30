@@ -72,6 +72,6 @@ if [ "$VNC" -eq 1 ]; then
     eval "$qemu_cmd" > /dev/null 2>&1
 else
     echo -e "${BOOT_DONE}"
-    echo -e "${b}●${w} Default RDP Credential username is admin and password is 123456789 Remember to Change your Password after login !"
+    echo -e " ${b}●${w} Default RDP Credential username is admin and password is 123456789 Remember to Change your Password after login !"
     eval "$qemu_cmd"
 fi
