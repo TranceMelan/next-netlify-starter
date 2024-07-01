@@ -69,7 +69,6 @@ if [ "$UEFI" -eq 1 ]; then
 fi
 if [ "$VNC" -eq 1 ]; then
     echo -e "${BOOT_VNC}"
-    echo -e " ${b}●${w} You're currently running Machine on RDP Mode, to switch to VNC please Switch to VNC in Settings"
     echo -e " ${b}●${w} Default RDP Credential username is admin and password is 123456789 Remember to Change your Password after login !"
     echo -e " ${b}●${w} Qemu will start in 5 Second"
     sleep 5
