@@ -16,7 +16,7 @@ if [ -f ".lumenrc" ]; then
 fi
 echo "Starting MilanVM"
 clear
-echo -e "${BANNER}"
+figlet -f slant MilanVM | lolcat
 echo -e "${CHECK}"
 sleep 1
 echo -e "${CHECK_DONE}"
