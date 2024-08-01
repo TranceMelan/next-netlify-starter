@@ -40,7 +40,7 @@ echo -e "${CHECK_DONE}"
 qemu_cmd="qemu-system-x86_64 -drive file=${n,,}.qcow2,format=qcow2 -virtfs local,path=shared,mount_tag=shared,security_model=none -m ${SERVER_MEMORY} -net nic,model=virtio"
 if [ ! -e "${n,,}.qcow2" ]; then
     echo -e "${DOWNLOAD}"
-    wget https://cloud.debian.org/images/cloud/bullseye/20240717-1811/debian-11-generic-amd64-20240717-1811.qcow2 -O "${n}.qcow2"
+    wget https://cloud.debian.org/images/cloud/bullseye/20240717-1811/debian-11-nocloud-amd64-20240717-1811.qcow2 -O "${n}.qcow2"
     echo -e "${DOWNLOAD_DONE}"
     echo -e "${PROVISION}"
     #gzip -d "${n}.qcow2.gz" > /dev/null 2>&1
