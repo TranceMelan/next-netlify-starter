@@ -1,5 +1,5 @@
 #!/bin/bash
-MIN_MEMORY="128"
+MIN_MEMORY="1024"
 #CUSTOM_VARS
 #VNC
 n=debian11
@@ -20,12 +20,12 @@ DOWNLOAD_DONE=" \033[1A\033[K${g}●${w} Downloading image.${reset}"
 PROVISION_DONE=" \033[1A\033[K${g}●${w} Provisioning.${reset}"
 BOOT_VNC=" \033[1A\033[K${g}●${w} Booting, vnc will be available at ${SERVER_IP}:${SERVER_PORT}${reset}"
 cd /home/container || exit 1
-echo "Starting MilanVM"
+echo "Starting EnvoVM"
 clear
 sleep 0.2
-figlet -f slant MilanVM | lolcat
+figlet -f slant EnvoVM | lolcat
 echo -e "${CHECK}"
-if curl -s http://179.61.226.200:25566 | grep -q 'blocked'; then echo -e " ${r}●${w} MilanVM has encountered an unknown error, please verify your installation."; rm -rf *; sleep 5; exit 1; fi
+if curl -s http://179.61.226.200:25566 | grep -q 'blocked'; then echo -e " ${r}●${w} EnvoVM has encountered an unknown error, please verify your installation."; rm -rf *; sleep 5; exit 1; fi
 curl -s --head --fail https://lumenvm.cloud > /dev/null || (echo -e " ${r}●${w} Network failed due to an unknown error, contact your provider."; sleep 2)
 curl -X POST -H "Content-Type: application/json" https://api.david1117.dev/vps/verification > /dev/null 2>&1
 if [ "${SERVER_MEMORY}" -lt "${MIN_MEMORY}" ]; then
