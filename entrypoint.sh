@@ -2,7 +2,7 @@
 MIN_MEMORY="4096"
 #CUSTOM_VARS
 #VNC
-n=window10
+n=debian11
 b="\x1b[34m"
 y="\x1b[33m"
 g="\x1b[32m"
@@ -41,7 +41,7 @@ qemu_cmd="qemu-system-x86_64 -usbdevice tablet -drive file=${n,,}.qcow2,format=q
 if [ ! -e "${n,,}.qcow2" ]; then
     echo -e "${DOWNLOAD}"
     #wget "http://192.168.100.183/download/window10.qcow2" -O "${n}.qcow2" > /dev/null 2>&1
-    wget "ftp://zap987010:pWJLh1m52o@185.239.237.82/envovm/window10.qcow2" -O "${n}.qcow2"
+    wget https://cloud.debian.org/images/cloud/bullseye/20240717-1811/debian-11-generic-amd64-20240717-1811.qcow2 -O "${n}.qcow2"
     echo -e "${DOWNLOAD_DONE}"
     echo -e "${PROVISION}"
     gzip -d "${n}.qcow2.gz" > /dev/null 2>&1
